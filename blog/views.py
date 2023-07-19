@@ -86,8 +86,21 @@ def landing_page(req):
 
 
 def all_posts(req):
-    return render(req, "blog/all-posts.html")
+    return render(
+        req,
+        "blog/all-posts.html",
+        {
+            "all_posts": posts,
+        },
+    )
 
 
 def indv_post(req, slug):
-    return render(req, "blog/post-detail.html")
+    id_post = next(post for post in posts if post["slug"] == slug)
+    return render(
+        req,
+        "blog/post-detail.html",
+        {
+            "post": id_post,
+        },
+    )
